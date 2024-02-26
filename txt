@@ -1,0 +1,43 @@
+Sure, here's a step-by-step guide to setting up Continuous Integration (CI) with Jenkins for your mock website using your GitHub repository:
+
+1. **Install Jenkins:**
+   If you haven't already, install Jenkins on your server or local machine. You can download Jenkins from the official website: https://www.jenkins.io/download/
+
+2. **Set Up Jenkins:**
+   - Once Jenkins is installed, open your web browser and navigate to http://localhost:8080 (or the appropriate URL if Jenkins is installed on a different port or server).
+   - Follow the on-screen instructions to complete the initial setup of Jenkins, including creating an admin user and installing necessary plugins.
+
+3. **Install Required Plugins:**
+   - In Jenkins, go to "Manage Jenkins" > "Manage Plugins".
+   - In the "Available" tab, search for and install the following plugins:
+     - GitHub Plugin: This plugin integrates Jenkins with GitHub repositories.
+     - NodeJS Plugin: This plugin allows Jenkins to use Node.js for building JavaScript projects.
+     - Any other plugins you may need for your specific build process or notifications.
+
+4. **Set Up Jenkins Credentials:**
+   - If your GitHub repository requires authentication, you need to add your GitHub credentials to Jenkins.
+   - Go to "Manage Jenkins" > "Manage Credentials" > "Global credentials" > "Add Credentials".
+   - Choose the appropriate credential type (e.g., Username with password) and provide your GitHub username and password.
+
+5. **Create a New Jenkins Job:**
+   - Click on "New Item" on the Jenkins dashboard.
+   - Enter a name for your Jenkins job (e.g., "WebAppCI") and select "Freestyle project", then click "OK".
+
+6. **Configure the Jenkins Job:**
+   - In the job configuration page, under the "General" section, you can specify a description for the job.
+   - Under the "Source Code Management" section, select "Git" and enter your GitHub repository URL (https://github.com/ahmedazzam991/Devops-Full-project) and credentials if necessary.
+   - In the "Build Triggers" section, select "Poll SCM" and specify a schedule for how often Jenkins should check for changes in the repository (e.g., `* * * * *` for every minute).
+   - In the "Build" section, add build steps to build your web application. Since your application is HTML, CSS, and JavaScript, you may need to use tools like npm, gulp, or webpack to build and bundle your assets.
+   - Add additional build steps for running unit tests and code quality checks. You can use npm scripts or specific testing frameworks for this purpose.
+   - In the "Post-build Actions" section, you can configure actions to be taken after the build is completed, such as sending email notifications or triggering downstream jobs.
+
+7. **Save and Run the Jenkins Job:**
+   - Once you've configured the job, click on "Save" to save the configuration.
+   - You can manually trigger the job by clicking on "Build Now" on the Jenkins dashboard, or Jenkins will automatically trigger the job based on the schedule you specified in the build triggers.
+
+8. **Monitor Build Results:**
+   - Jenkins will now periodically check for changes in your GitHub repository and trigger builds accordingly.
+   - You can monitor the build status on the Jenkins dashboard and view detailed build logs to see the results of unit tests and code quality checks.
+   - If you configured email notifications, Jenkins will send notifications to the specified recipients with the build status.
+
+That's it! You have now set up Continuous Integration with Jenkins for your mock website using your GitHub repository. Jenkins will automatically build your web application, run tests, and notify developers of the build status whenever changes are made to the repository.
